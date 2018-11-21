@@ -10,7 +10,7 @@ export const getTopMoviesStart = () => {
         console.log(res.data.results);
         dispatch(getTopMoviesSuccess(res.data.results));
       })
-      .catch(error => console.log(error));
+      .catch(error => dispatch(getTopMoviesFailed(error)));
   };
 };
 
@@ -18,6 +18,14 @@ export const getTopMoviesSuccess = movies => {
   return {
     type: actionTypes.GET_TOP_MOVIES_SUCCESS,
     topMovies: movies
+  };
+};
+
+export const getTopMoviesFailed = error => {
+  console.log(error);
+  return {
+    type: actionTypes.GET_TOP_MOVIES_FAIL,
+    error: error
   };
 };
 
