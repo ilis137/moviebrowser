@@ -10,6 +10,7 @@ import reducer from "./store/Reducers/MovieBrowser";
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
+console.log("in index");
 const app = (
   <Provider store={store}>
     <App />

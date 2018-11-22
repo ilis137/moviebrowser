@@ -1,1 +1,1 @@
-export { getTopMoviesStart } from "./MovieBrowser";
+export { getTopMovies } from "./MovieBrowser";

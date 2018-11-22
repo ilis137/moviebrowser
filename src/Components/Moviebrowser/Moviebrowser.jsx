@@ -1,7 +1,20 @@
 import React from "react";
-
-const Moviebrowser = () => {
-  return <div>movies will come here</div>;
+import MovieList from "./Movielist/MovieList";
+import { Grid } from "@material-ui/core";
+const Moviebrowser = props => {
+  console.log("in moviebrowser");
+  return (
+    <>
+      <Grid container spacing={24}>
+        <Grid item sm={12}>
+          search will go here
+        </Grid>
+        <Grid container>
+          <MovieList movies={props.topMovies} />
+        </Grid>
+      </Grid>
+    </>
+  );
 };
 
 export default Moviebrowser;

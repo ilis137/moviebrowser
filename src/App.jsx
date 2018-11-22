@@ -4,16 +4,18 @@ import Moviebrowser from "./Components/Moviebrowser/Moviebrowser";
 import "./App.css";
 import * as actions from "./store/Actions/index";
 import { connect } from "react-redux";
+
 class App extends Component {
   componentDidMount() {
     this.props.getTopMovies();
   }
 
   render() {
+    console.log("in app");
     return (
       <div className="App">
         <Navbar />
-        <Moviebrowser />
+        <Moviebrowser topMovies={this.props.topMovies} />
       </div>
     );
   }
@@ -21,12 +23,13 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getTopMovies: () => dispatch(actions.getTopMoviesStart())
+    getTopMovies: () => dispatch(actions.getTopMovies())
   };
 };
 const mapStateToProps = state => {
   return {
-    topMovies: state.topMovies
+    topMovies: state.topMovies,
+    isLoading: state.isLoading
   };
 };
 
