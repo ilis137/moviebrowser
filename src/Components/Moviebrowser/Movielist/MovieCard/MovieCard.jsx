@@ -8,7 +8,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 const styles = {
   cardMedia: {
-    maxHeight: 394,
+    maxHeight: 500,
     overflow: "hidden"
   },
   card: {
@@ -19,6 +19,10 @@ const styles = {
   },
   bgImage: {
     width: "100%"
+  },
+  title: {
+    background: "#555",
+    opacity: "0.5"
   }
 };
 
