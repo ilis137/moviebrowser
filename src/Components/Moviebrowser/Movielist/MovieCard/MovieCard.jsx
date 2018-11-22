@@ -19,10 +19,6 @@ const styles = {
   },
   bgImage: {
     width: "100%"
-  },
-  title: {
-    background: "#555",
-    opacity: "0.5"
   }
 };
 
