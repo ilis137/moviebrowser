@@ -8,7 +8,7 @@ export const getTopMovies = () => {
       "https://api.themoviedb.org/3/movie/top_rated?api_key=f59105d2523e3fcebe1e4a83f7abb717&language=en-US&page=1"
     )
       .then(res => {
-        console.log(res.data.results);
+        console.log(res);
         dispatch(getTopMoviesSuccess(res.data.results));
       })
       .catch(error => dispatch(getTopMoviesFailed(error)));
