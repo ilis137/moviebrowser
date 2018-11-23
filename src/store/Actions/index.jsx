@@ -1,1 +1,1 @@
-export { getTopMovies } from "./MovieBrowser";
+export { getTopMovies, getMovieDetails, closeModal } from "./MovieBrowser";

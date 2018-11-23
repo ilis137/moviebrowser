@@ -15,6 +15,19 @@ export const getTopMovies = () => {
   };
 };
 
+export const closeModal = () => {
+  return {
+    type: actionTypes.CLOSE_MOVIE_MODAL
+  };
+};
+
+export const getMovieDetails = movie => {
+  return {
+    type: actionTypes.GET_MOVIE_DETAILS,
+    detailedMovie: movie
+  };
+};
+
 export const getTopMoviesStart = () => {
   return {
     type: actionTypes.GET_TOP_MOVIES_START
@@ -29,7 +42,6 @@ export const getTopMoviesSuccess = movies => {
 };
 
 export const getTopMoviesFailed = error => {
-  console.log(error);
   return {
     type: actionTypes.GET_TOP_MOVIES_FAIL,
     error: error
@@ -40,11 +52,5 @@ export const searchMovies = movieName => {
   return {
     type: actionTypes.SEARCH_MOVIE,
     movieName
-  };
-};
-export const getMovieDetails = movieDetail => {
-  return {
-    type: actionTypes.GET_MOVIE_DETAILS,
-    movieDetail
   };
 };

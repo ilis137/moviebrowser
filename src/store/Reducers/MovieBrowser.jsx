@@ -3,7 +3,9 @@ import * as actionTypes from "../Actions/actions";
 const initialState = {
   movies: null,
   error: null,
-  isLoading: false
+  isLoading: false,
+  modalOpen: false,
+  detailedMovie: ""
 };
 
 const Reducer = (state = initialState, action) => {
@@ -12,6 +14,12 @@ const Reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: true
+      };
+    case actionTypes.CLOSE_MOVIE_MODAL:
+      return {
+        ...state,
+        modalOpen: false,
+        movie: ""
       };
     case actionTypes.GET_TOP_MOVIES_SUCCESS:
       return {
@@ -23,6 +31,12 @@ const Reducer = (state = initialState, action) => {
       return {
         ...state,
         error: action.error
+      };
+    case actionTypes.GET_MOVIE_DETAILS:
+      return {
+        ...state,
+        modalOpen: true,
+        detailedMovie: action.detailedMovie
       };
     default:
       return state;
