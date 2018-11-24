@@ -1,11 +1,11 @@
 import * as actionTypes from "./actions";
 import Axios from "axios";
 
-export const getTopMovies = () => {
+export const getTopMovies = page => {
   return dispatch => {
     dispatch(getTopMoviesStart());
     Axios.get(
-      "https://api.themoviedb.org/3/movie/top_rated?api_key=f59105d2523e3fcebe1e4a83f7abb717&language=en-US&page=1"
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=f59105d2523e3fcebe1e4a83f7abb717&language=en-US&page=${page}`
     )
       .then(res => {
         console.log(res);

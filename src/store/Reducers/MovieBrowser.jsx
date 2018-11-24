@@ -22,9 +22,10 @@ const Reducer = (state = initialState, action) => {
         movie: ""
       };
     case actionTypes.GET_TOP_MOVIES_SUCCESS:
+      const existingMovies = state.topMovies ? state.topMovies : [];
       return {
         ...state,
-        topMovies: action.topMovies,
+        topMovies: [...existingMovies, ...action.topMovies],
         isLoading: false
       };
     case actionTypes.GET_TOP_MOVIES_FAIL:
