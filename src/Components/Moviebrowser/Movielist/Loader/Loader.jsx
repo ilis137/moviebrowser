@@ -1,16 +1,15 @@
 import React from "react";
-//import { RefreshIndicator } from "material-ui";
-import Consumer from "../../../../App";
-const styles = {
-  refreshStyle: {
-    position: "relative",
-    display: "block",
-    margin: "0 auto"
-  }
+import "./Loader.css";
+import { connect } from "react-redux";
+const Loader = props => {
+  const loader = props.isLoading ? (
+    <div className="loader">Loading...</div>
+  ) : null;
+  return loader;
 };
-
-const Loader = () => {
-  return <Consumer />;
+const mapStateToProps = state => {
+  return {
+    isLoading: state.isLoading
+  };
 };
-
-export default Loader;
+export default connect(mapStateToProps)(Loader);
