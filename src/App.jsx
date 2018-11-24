@@ -4,14 +4,33 @@ import Moviebrowser from "./Components/Moviebrowser/Moviebrowser";
 import "./App.css";
 import * as actions from "./store/Actions/index";
 import { connect } from "react-redux";
-
+import * as scrollHelpers from "./Scroll";
 class App extends Component {
+  state = {
+    currentpage: 1
+  };
+
   componentDidMount() {
-    this.props.getTopMovies();
+    window.onscroll = this.handleScroll;
+    this.props.getTopMovies(this.state.currentpage);
   }
 
+  handleScroll = () => {
+    const { isLoading } = this.props;
+    if (!isLoading) {
+      let pageScrolled = scrollHelpers.getScrollDownPercentage();
+      if (pageScrolled >= 1.0) {
+        const nextPage = this.state.currentpage + 1;
+        this.props.getTopMovies(nextPage);
+        this.setState({
+          ...this.state,
+          currentpage: nextPage
+        });
+      }
+    }
+  };
+
   render() {
-    console.log("in app");
     return (
       <div className="App">
         <Navbar />
@@ -23,7 +42,7 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getTopMovies: () => dispatch(actions.getTopMovies())
+    getTopMovies: page => dispatch(actions.getTopMovies(page))
   };
 };
 const mapStateToProps = state => {
