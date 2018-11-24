@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 import { withStyles } from "@material-ui/core/styles";
-
+import MovieIcon from "@material-ui/icons/Movie";
 import SearchIcon from "@material-ui/icons/Search";
 
 const styles = theme => ({
@@ -25,10 +25,7 @@ const styles = theme => ({
     marginRight: 20
   },
   title: {
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "block"
-    }
+    display: "block"
   },
   search: {
     position: "relative",
@@ -79,14 +76,7 @@ const Navbar = props => {
     <div className={classes.root}>
       <AppBar position="static" color="primary" className={classes.appbar}>
         <Toolbar>
-          <Typography
-            className={classes.title}
-            variant="h6"
-            color="inherit"
-            noWrap
-          >
-            Movie browser
-          </Typography>
+          <MovieIcon style={{ fontSize: "48px", cursor: "pointer" }} />
           <div className={classes.grow} />
           <div className={classes.search}>
             <div className={classes.searchIcon}>
