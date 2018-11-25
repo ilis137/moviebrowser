@@ -1,11 +1,11 @@
 import * as actionTypes from "../Actions/actions";
 
 const initialState = {
-  movies: null,
   error: null,
   isLoading: false,
   modalOpen: false,
-  detailedMovie: ""
+  detailedMovie: "",
+  searchedMovieResults: null
 };
 
 const Reducer = (state = initialState, action) => {
@@ -39,6 +39,22 @@ const Reducer = (state = initialState, action) => {
         modalOpen: true,
         detailedMovie: action.detailedMovie
       };
+    case actionTypes.SEARCH_MOVIE_START:
+      return {
+        ...state,
+        isLoading: true
+      };
+    case actionTypes.SEARCH_MOVIE_SUCCESS:
+      return {
+        ...state,
+        searchedMovieResults: action.movie
+      };
+    case actionTypes.SEARCH_MOVIE_FAIL:
+      return {
+        ...state,
+        error: action.error
+      };
+
     default:
       return state;
   }
