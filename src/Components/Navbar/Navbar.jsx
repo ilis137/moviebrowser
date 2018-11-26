@@ -1,15 +1,15 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-
+import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 import { withStyles } from "@material-ui/core/styles";
 import MovieIcon from "@material-ui/icons/Movie";
 import SearchIcon from "@material-ui/icons/Search";
-
+import { withRouter } from "react-router-dom";
 const styles = theme => ({
   appbar: {
     background: "#00bfa5"
@@ -70,35 +70,48 @@ const styles = theme => ({
   }
 });
 
-const Navbar = props => {
-  const classes = props.classes;
-  return (
-    <div className={classes.root}>
-      <AppBar position="static" color="primary" className={classes.appbar}>
-        <Toolbar>
-          <MovieIcon style={{ fontSize: "48px", cursor: "pointer" }} />
-          <div className={classes.grow} />
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
+class Navbar extends Component {
+  handleSearch = e => {
+    if (e.which === 13 && e.target.value !== "") {
+      this.props.handleSearch(e.target.value);
+      this.props.history.push("/search");
+    }
+  };
+
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <div className={classes.root}>
+        <AppBar position="static" color="primary" className={classes.appbar}>
+          <Toolbar>
+            <Link to="/">
+              <MovieIcon style={{ fontSize: "48px", cursor: "pointer" }} />
+            </Link>
+            <div className={classes.grow} />
+            <div className={classes.search} onKeyDown={this.handleSearch}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+
+              <InputBase
+                placeholder="Search…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput
+                }}
+              />
             </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput
-              }}
-            />
-          </div>
-          <div className={classes.grow} />
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
-};
+            <div className={classes.grow} />
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
+  }
+}
 
 Navbar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Navbar);
+export default withRouter(withStyles(styles)(Navbar));
