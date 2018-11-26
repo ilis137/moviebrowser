@@ -3,7 +3,7 @@ import MovieList from "./Movielist/MovieList";
 import { Grid } from "@material-ui/core";
 import Modal from "./Modal/Modal";
 const Moviebrowser = props => {
-  console.log("in moviebrowser");
+  //console.log("in moviebrowser");
   return (
     <>
       <Modal />
