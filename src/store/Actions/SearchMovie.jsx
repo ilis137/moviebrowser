@@ -6,10 +6,10 @@ export const searchMovieStart = () => {
     type: actionTypes.SEARCH_MOVIE_START
   };
 };
-export const searchMovieSuccess = movie => {
+export const searchMovieSuccess = movies => {
   return {
     type: actionTypes.SEARCH_MOVIE_SUCCESS,
-    movie
+    movies
   };
 };
 export const searchMovieFail = error => {
@@ -21,12 +21,13 @@ export const searchMovieFail = error => {
 export const searchMovie = movie => {
   return dispatch => {
     dispatch(searchMovieStart());
+
     Axios.get(
-      `https://api.themoviedb.org/3/movie/top_rated?api_key=f59105d2523e3fcebe1e4a83f7abb717&language=en-US&query=` +
-        encodeURI(movie)
+      `https://api.themoviedb.org/3/search/movie?api_key=f59105d2523e3fcebe1e4a83f7abb717&language=en-US&query=${movie}&page=1&include_adult=false`
     )
       .then(res => {
-        dispatch(searchMovieSuccess(res.results));
+        console.log(res);
+        dispatch(searchMovieSuccess(res.data.results));
       })
       .catch(error => {
         dispatch(searchMovieFail(error));
