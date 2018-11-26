@@ -5,6 +5,8 @@ import "./App.css";
 import * as actions from "./store/Actions/index";
 import { connect } from "react-redux";
 import * as scrollHelpers from "./Scroll";
+import { Route } from "react-router-dom";
+import MovieSearch from "./Components/Moviebrowser/MovieSearch/MovieSearch";
 class App extends Component {
   state = {
     currentpage: 1
@@ -33,8 +35,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar />
-        <Moviebrowser topMovies={this.props.topMovies} />
+        <Navbar handleSearch={this.props.searchMovie} />
+
+        <Route
+          path="/"
+          exact
+          render={() => <Moviebrowser topMovies={this.props.topMovies} />}
+        />
+        <Route path="/search" component={MovieSearch} />
       </div>
     );
   }
@@ -42,7 +50,8 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getTopMovies: page => dispatch(actions.getTopMovies(page))
+    getTopMovies: page => dispatch(actions.getTopMovies(page)),
+    searchMovie: movie => dispatch(actions.searchMovie(movie))
   };
 };
 const mapStateToProps = state => {
