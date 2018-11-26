@@ -47,7 +47,7 @@ const Reducer = (state = initialState, action) => {
     case actionTypes.SEARCH_MOVIE_SUCCESS:
       return {
         ...state,
-        searchedMovieResults: action.movie
+        searchedMovieResults: action.movies
       };
     case actionTypes.SEARCH_MOVIE_FAIL:
       return {
