@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import * as actions from "../../../../store/Actions/index";
-import { withStyles } from "@material-ui/core/styles";
+
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
-import { CardTitle } from "@material-ui/core/Card";
+
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import { connect } from "react-redux";
@@ -14,7 +14,7 @@ const styles = {
   },
   card: {
     cursor: "pointer",
-    height: "600px",
+    height: "500px",
     overflow: "hidden",
     margin: "20px"
   },
@@ -33,7 +33,7 @@ class MovieCard extends Component {
     const { movie, isModalOpen } = this.props;
     const subtitle = this.state.isMouseOver ? movie.overview : null;
     return (
-      <div>
+      <>
         <Card
           style={styles.card}
           onMouseOver={() => this.setState({ isMouseOver: true })}
@@ -55,7 +55,7 @@ class MovieCard extends Component {
             </CardContent>
           </CardMedia>
         </Card>
-      </div>
+      </>
     );
   }
 }
