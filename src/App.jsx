@@ -5,7 +5,7 @@ import "./App.css";
 import * as actions from "./store/Actions/index";
 import { connect } from "react-redux";
 import * as scrollHelpers from "./Scroll";
-import { Route } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import MovieSearch from "./Components/Moviebrowser/MovieSearch/MovieSearch";
 class App extends Component {
   state = {
@@ -13,9 +13,11 @@ class App extends Component {
   };
 
   componentDidMount() {
+    console.log(this.props);
     window.onscroll = this.handleScroll;
     this.props.getTopMovies(this.state.currentpage);
   }
+  componentDidUpdate() {}
 
   handleScroll = () => {
     const { isLoading } = this.props;
@@ -36,13 +38,26 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar handleSearch={this.props.searchMovie} />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={props => {
+              console.log(props);
+              return (
+                <Moviebrowser {...props} topMovies={this.props.topMovies} />
+              );
+            }}
+          />
 
-        <Route
-          path="/"
-          exact
-          render={() => <Moviebrowser topMovies={this.props.topMovies} />}
-        />
-        <Route path="/search" component={MovieSearch} />
+          <Route
+            path="/search"
+            render={props => {
+              console.log(props);
+              return <MovieSearch {...props} movies={this.props.movies} />;
+            }}
+          />
+        </Switch>
       </div>
     );
   }
@@ -57,11 +72,14 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     topMovies: state.topMovies,
-    isLoading: state.isLoading
+    isLoading: state.isLoading,
+    movies: state.searchedMovieResults
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App)
+);
