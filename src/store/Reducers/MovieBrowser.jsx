@@ -5,7 +5,8 @@ const initialState = {
   isLoading: false,
   modalOpen: false,
   detailedMovie: "",
-  searchedMovieResults: null
+  searchedMovieResults: null,
+  movies: ""
 };
 
 const Reducer = (state = initialState, action) => {
@@ -19,7 +20,7 @@ const Reducer = (state = initialState, action) => {
       return {
         ...state,
         modalOpen: false,
-        movie: ""
+        detailedMovie: ""
       };
     case actionTypes.GET_TOP_MOVIES_SUCCESS:
       const existingMovies = state.topMovies ? state.topMovies : [];
@@ -47,12 +48,14 @@ const Reducer = (state = initialState, action) => {
     case actionTypes.SEARCH_MOVIE_SUCCESS:
       return {
         ...state,
-        searchedMovieResults: action.movies
+        searchedMovieResults: action.movies,
+        isLoading: false
       };
     case actionTypes.SEARCH_MOVIE_FAIL:
       return {
         ...state,
-        error: action.error
+        error: action.error,
+        isLoading: true
       };
 
     default:
