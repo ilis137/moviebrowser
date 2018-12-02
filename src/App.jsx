@@ -53,7 +53,6 @@ class App extends Component {
           <Route
             path="/search"
             render={props => {
-              console.log(props);
               return <MovieSearch {...props} movies={this.props.movies} />;
             }}
           />

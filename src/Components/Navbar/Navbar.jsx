@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import { Link } from "react-router-dom";
-import Typography from "@material-ui/core/Typography";
+
 import InputBase from "@material-ui/core/InputBase";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 import { withStyles } from "@material-ui/core/styles";
@@ -73,8 +73,7 @@ const styles = theme => ({
 class Navbar extends Component {
   handleSearch = e => {
     if (e.which === 13 && e.target.value !== "") {
-      this.props.handleSearch(e.target.value);
-      this.props.history.push("/search");
+      this.props.history.push(`/search?movie=${e.target.value}`);
     }
   };
 
