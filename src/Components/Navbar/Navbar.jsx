@@ -84,7 +84,7 @@ class Navbar extends Component {
       <div className={classes.root}>
         <AppBar position="static" color="primary" className={classes.appbar}>
           <Toolbar>
-            <Link to="/">
+            <Link to="/" style={{ textDecoration: "none", color: "#ffffff" }}>
               <MovieIcon style={{ fontSize: "48px", cursor: "pointer" }} />
             </Link>
             <div className={classes.grow} />
