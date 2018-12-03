@@ -13,14 +13,19 @@ const styles = {
 };
 
 class MovieSearch extends Component {
-  componentWillReceiveProps() {
-    console.log(this.props.location.search);
-  }
   componentDidMount() {
     const query = new URLSearchParams(this.props.location.search);
     for (let param of query.entries()) {
       this.props.searchMovie(param[1]);
-      console.log(param[1]);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.location.search != this.props.location.search) {
+      const query = new URLSearchParams(this.props.location.search);
+      for (let param of query.entries()) {
+        this.props.searchMovie(param[1]);
+      }
     }
   }
 
