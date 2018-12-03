@@ -9,12 +9,12 @@ import CardContent from "@material-ui/core/CardContent";
 import { connect } from "react-redux";
 const styles = {
   cardMedia: {
-    maxHeight: "600px",
+    maxHeight: "500px",
     overflow: "hidden"
   },
   card: {
     cursor: "pointer",
-    height: "500px",
+    maxHeight: "500px",
     overflow: "hidden",
     margin: "20px"
   },
