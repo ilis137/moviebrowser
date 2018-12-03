@@ -10,9 +10,6 @@ const Moviebrowser = props => {
     <>
       <Modal />
       <Grid container spacing={24}>
-        <Grid item sm={12}>
-          search will go here
-        </Grid>
         <Grid container>
           <MovieList movies={props.topMovies} />
         </Grid>
