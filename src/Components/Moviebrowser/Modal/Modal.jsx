@@ -32,7 +32,7 @@ class Modal extends React.Component {
   };
 
   render() {
-    const { fullScreen, modalOpen, movie, onModalClosed } = this.props;
+    const { modalOpen, movie, onModalClosed } = this.props;
     const genres =
       movie && movie.genres
         ? movie.genres.map(genre => genre.name).join(", ")

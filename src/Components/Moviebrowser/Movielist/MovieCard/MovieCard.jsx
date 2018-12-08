@@ -14,7 +14,7 @@ const styles = {
   },
   card: {
     cursor: "pointer",
-    maxHeight: "500px",
+    height: "380px",
     overflow: "hidden",
     margin: "20px"
   },
@@ -30,8 +30,8 @@ class MovieCard extends Component {
   };
 
   render() {
-    const { movie, isModalOpen } = this.props;
-    const subtitle = this.state.isMouseOver ? movie.overview : null;
+    const { movie } = this.props;
+
     return (
       <>
         <Card
