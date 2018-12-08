@@ -2,7 +2,7 @@ import React from "react";
 import MovieList from "./Movielist/MovieList";
 import { Grid } from "@material-ui/core";
 import Modal from "./Modal/Modal";
-import { withRouter } from "react-router-dom";
+
 const Moviebrowser = props => {
   console.log("in moviebrowser");
   console.log(props);
