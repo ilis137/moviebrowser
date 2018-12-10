@@ -1,4 +1,4 @@
-import { configure, shallow } from "enzyme";
+import { configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import Reducer from "./MovieBrowser";
@@ -36,6 +36,61 @@ describe("reducer", () => {
       detailedMovie: "",
       searchedMovieResults: null,
       movies: ""
+    });
+  });
+
+  it("it should return Top movies success", () => {
+    expect(
+      Reducer(
+        {
+          error: null,
+          isLoading: true,
+          modalOpen: false,
+          detailedMovie: "",
+          searchedMovieResults: null,
+          movies: ""
+        },
+        {
+          type: "GET_TOP_MOVIES_SUCCESS",
+          topMovies: ["hi", "hello", "star wars", "avengers"]
+        }
+      )
+    ).toEqual({
+      error: null,
+      isLoading: false,
+      modalOpen: false,
+      detailedMovie: "",
+      searchedMovieResults: null,
+      movies: "",
+      topMovies: ["hi", "hello", "star wars", "avengers"]
+    });
+  });
+
+  it("it should return error if failed to fetch topMovies", () => {
+    expect(
+      Reducer(
+        {
+          error: null,
+          isLoading: true,
+          modalOpen: false,
+          detailedMovie: "",
+          searchedMovieResults: null,
+          movies: "",
+          topMovies: ""
+        },
+        {
+          type: "GET_TOP_MOVIES_FAIL",
+          error: "unable to load movies"
+        }
+      )
+    ).toEqual({
+      error: "unable to load movies",
+      isLoading: false,
+      modalOpen: false,
+      detailedMovie: "",
+      searchedMovieResults: null,
+      movies: "",
+      topMovies: ""
     });
   });
 });

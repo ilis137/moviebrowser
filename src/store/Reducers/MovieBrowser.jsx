@@ -32,7 +32,8 @@ const Reducer = (state = initialState, action) => {
     case actionTypes.GET_TOP_MOVIES_FAIL:
       return {
         ...state,
-        error: action.error
+        error: action.error,
+        isLoading: false
       };
     case actionTypes.GET_MOVIE_DETAILS:
       return {
@@ -55,7 +56,7 @@ const Reducer = (state = initialState, action) => {
       return {
         ...state,
         error: action.error,
-        isLoading: true
+        isLoading: false
       };
 
     default:
