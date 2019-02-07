@@ -17,7 +17,6 @@ class App extends Component {
     window.onscroll = this.handleScroll;
     this.props.getTopMovies(this.state.currentpage);
   }
-  componentDidUpdate() {}
 
   handleScroll = () => {
     const { isLoading } = this.props;
@@ -43,7 +42,6 @@ class App extends Component {
             exact
             path="/"
             render={props => {
-              console.log(props);
               return (
                 <Moviebrowser {...props} topMovies={this.props.topMovies} />
               );
