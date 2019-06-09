@@ -1,2 +1,2 @@
 # Movie Browser
-  A web App for browsing movies. Built with React,React-Router and Redux. 
+  A web App for browsing movies. Built with React,React-Router and Redux and movieDB API. 
